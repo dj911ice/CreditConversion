@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) 2022.
+ *
+ * Justin P. Dickerson
+ * Individual Copyright
+ *
+ */
+
 import java.math.RoundingMode
 import kotlin.system.exitProcess
 
