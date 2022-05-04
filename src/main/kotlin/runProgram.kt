@@ -14,17 +14,25 @@ private fun menu() {
     val welcomeMsg = "What type of credits are being converted?" +
             "\nPress 1 for Semester or 2 for Quarter or press 3 to Quit "
     println(welcomeMsg)
-    val userInput = readln().toInt()
 
-    menuOptions(userInput)
+    val userInput = readln().toIntOrNull()
+    if (userInput != null) {
+        menuOptions(userInput)
+    } else {
+        println("Invalid input, numbers only")
+        menu()
+    }
 }
 
 private fun menuOptions(option: Int) {
     when (option) {
         1 -> semesterToQuarter()
         2 -> quarterToSemester()
-        3 -> exitProcess(0)
-        else -> menu()
+        3 -> continueProgram()
+        else -> {
+            println("Error, input not valid. Valid inputs include 1, 2, & 3.")
+            menu()
+        }
     }
 }
 
@@ -34,7 +42,7 @@ private fun semesterToQuarter() {
 
     val semesterCredits = readln().toInt()
     val convertedCredits = semesterCredits.times(1.5)
-    val convertedMsg = "$semesterCredits Semester credits were converted to $convertedCredits Quarter Credits."
+    val convertedMsg = "$semesterCredits semester credits were converted to $convertedCredits quarter credits."
 
     println(convertedMsg)
 
@@ -52,7 +60,7 @@ private fun quarterToSemester() {
     val quarterCredits = readln().toInt()
     val convertedCreditsRaw = quarterCredits.times(0.67).toBigDecimal()
     val convertedCredits = convertedCreditsRaw.setScale(2, RoundingMode.FLOOR)
-    val convertedMsg = "$quarterCredits Quarter credits were converted to $convertedCredits Semester Credits."
+    val convertedMsg = "$quarterCredits quarter credits were converted to $convertedCredits semester credits."
 
     println(convertedMsg)
 
@@ -63,6 +71,7 @@ private fun quarterToSemester() {
 
 private fun continueProgram() {
     println("Wish to continue? y for yes or n for no")
+
     val userInput = readLine()
     if (userInput != null) {
         if (userInput.lowercase() == "y" || userInput.lowercase() == "yes") {
