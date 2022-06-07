@@ -67,7 +67,7 @@ private fun quarterToSemester() {
 
     val quarterCredits = readln().toInt()
     val convertedCreditsRaw = quarterCredits.times(0.67).toBigDecimal()
-    val convertedCredits = convertedCreditsRaw.setScale(2, RoundingMode.FLOOR)
+    val convertedCredits = convertedCreditsRaw.setScale(2, RoundingMode.DOWN)
     val convertedMsg = "$quarterCredits quarter credits were converted to $convertedCredits semester credits."
 
     println(convertedMsg)
